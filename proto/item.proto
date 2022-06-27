@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package proto;
+
+
+option go_package = "./";
+
+
+message UniqueItemID {
+    int64 ItemID = 1;
+}
+
+//c
+message Item {
+    // @inject_tag: json:"item_name"
+    string ItemName = 1;
+    string ItemDesc = 2;
+    double ItemPrice = 3;
+    int64 ItemStock = 4;
+    int64 Status = 5;
+    int64 CreatorID = 6;
+    int64 LastModifierID = 7;
+}
+
+message CreateItemRequest {
+    Item Item = 1;
+}
+
+message CreateItemResponse {
+    string Msg = 1;
+}
+
+
+//u
+message UpdateItem {
+    int64 ItemID = 1;
+    string ItemName = 2;
+    string ItemDesc = 3;
+    double ItemPrice = 4;
+    int64 ItemStock = 5;
+    int64 Status = 6;
+    int64 LastModifierID = 7;
+}
+
+message UpdateItemRequest {
+    UpdateItem UpdateItem = 1;
+}
+
+message UpdateItemResponse {
+    string Msg = 1;
+}
+
+//d
+message RemoveItemRequest {
+    UniqueItemID UniqueItemID = 1;
+}
+
+message RemoveItemResponse {
+}
+
+//s item
+message ActivityItem {
+    int64 ItemID = 1;
+    string ItemName = 2;
+    string ItemDesc = 3;
+    double ItemPrice = 4;
+    double ItemSpecialPrice = 5;
+    int64 PromotionID = 6;
+}
+
+message GetItemRequest {
+    UniqueItemID UniqueItemID = 1;
+}
+
+message GetItemResponse {
+    ActivityItem ActivityItem = 1;
+}
+
+//s promotion
+message Promotion {
+    int64 PromotionID = 1;
+    string PromotionDesc = 2;
+    int64 ItemID = 3;
+    double ItemSpecialPrice = 4;
+    int64 CreatorID = 5;
+    int64 LastModifierID = 6;
+    string StartTime = 7;
+    string EndTime = 8;
+}
+
+message GetPromotionRequest {
+    UniqueItemID UniqueItemID = 1;
+}
+
+message GetPromotionResponse {
+    repeated Promotion Promotion = 1;
+}
+
+//c promotion
+message CreatePromotionRequest {
+    Promotion Promotion = 1;
+}
+
+message CreatePromotionResponse {
+    string Msg = 1;
+}
+
+//d promotion
+message RemovePromotionRequest {
+    Promotion Promotion = 1;
+}
+
+message RemovePromotionResponse {
+}
+
+service ItemService {
+    rpc CreateItem (CreateItemRequest) returns (CreateItemResponse);
+    rpc UpdateItem (UpdateItemRequest) returns (UpdateItemResponse);
+    rpc RemoveItem (RemoveItemRequest) returns (RemoveItemResponse);
+    rpc GetItem (GetItemRequest) returns  (GetItemResponse);
+    rpc GetPromotion (GetPromotionRequest) returns  (GetPromotionResponse);
+    rpc CreatePromotion (CreatePromotionRequest) returns (CreatePromotionResponse);
+    rpc RemovePromotion (RemovePromotionRequest) returns (RemovePromotionResponse);
+}
