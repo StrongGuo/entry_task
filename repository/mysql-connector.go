@@ -123,25 +123,6 @@ func (m *MySQL) GetPromotions(ctx context.Context, i model.Items) (p []*proto.Pr
 	return promotions, nil
 }
 
-//SearchItem 查询是否存在item
-func (m *MySQL) SearchItem(ctx context.Context, i model.Items) (int64, error) {
-	queryText := fmt.Sprintf(`SELECT * FROM items WHERE item_id = %d；`, i.ItemID)
-
-	rows, err := m.dbCon.QueryContext(ctx, queryText)
-
-	defer rows.Close()
-
-	if err != nil {
-		return 0, err
-	}
-
-	var l int64 = 0
-	for rows.Next() {
-		l++
-	}
-	return l, nil
-}
-
 //CreatePromotion 为item新增活动，需同时插入两张表
 func (m *MySQL) CreatePromotion(ctx context.Context, p model.Promotions) (int64, error) {
 	timeUnix := time.Now().Unix() //生成时间戳作为promotion_id插入

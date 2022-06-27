@@ -71,25 +71,26 @@ func (s *Server) UpdateItem(ctx context.Context, req *proto.UpdateItemRequest) (
 		LastModifierID: u.GetLastModifierID(),
 	}
 
-	if UpdateItemInfo.ItemName == "" || UpdateItemInfo.ItemDesc == "" || UpdateItemInfo.CreatorID == 0 || UpdateItemInfo.LastModifierID == 0 || UpdateItemInfo.ItemPrice < 0 || UpdateItemInfo.ItemStock < 0 {
+	if UpdateItemInfo.ItemName == "" || UpdateItemInfo.ItemDesc == "" || UpdateItemInfo.LastModifierID == 0 || UpdateItemInfo.ItemPrice < 0 || UpdateItemInfo.ItemStock < 0 {
 		// 校验非空
 		return &proto.UpdateItemResponse{
 			Msg: "invalid params",
 		}, nil
 	}
-
+	//更新数据库
 	res, err := repo.UpdateItem(ctx, UpdateItemInfo)
-	reds.InvalidItemCash(u.GetItemID()) //清除缓存
-
-	if res == 1 {
+	fmt.Println(res)
+	if res != 0 {
 		return &proto.UpdateItemResponse{
-			Msg: "Invalid itemid",
+			Msg: "Nothing updated, please check your ItemID or params",
 		}, nil
 	}
-
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, fmt.Sprintf("internal error : %v", err))
 	}
+
+	//删除缓存
+	reds.InvalidItemCash(u.GetItemID())
 
 	return &proto.UpdateItemResponse{Msg: "success"}, nil
 }
@@ -130,6 +131,7 @@ func (s *Server) GetItem(ctx context.Context, req *proto.GetItemRequest) (*proto
 		PromotionID:      cash.PromotionID,
 	}
 	if flag {
+		fmt.Println("此处为读缓存...")
 		return &proto.GetItemResponse{
 			ActivityItem: &itemInfo,
 		}, nil
@@ -203,9 +205,6 @@ func (s *Server) CreatePromotion(ctx context.Context, req *proto.CreatePromotion
 		StartTime:        promotion.GetStartTime(),
 		EndTime:          promotion.GetEndTime(),
 	}
-	Iteminfo := model.Items{
-		ItemID: promotion.GetItemID(),
-	}
 
 	if newPromotion.EndTime < newPromotion.StartTime {
 		return &proto.CreatePromotionResponse{
@@ -213,14 +212,7 @@ func (s *Server) CreatePromotion(ctx context.Context, req *proto.CreatePromotion
 		}, nil
 	}
 
-	rows, err := repo.SearchItem(ctx, Iteminfo)
-	if rows == 0 || err != nil {
-		return &proto.CreatePromotionResponse{
-			Msg: "ItemID is not exit",
-		}, nil
-	}
-
-	_, err = repo.CreatePromotion(ctx, newPromotion)
+	_, err := repo.CreatePromotion(ctx, newPromotion)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, fmt.Sprintf("internal error : %v", err))
 	}

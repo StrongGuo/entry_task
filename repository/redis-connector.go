@@ -38,9 +38,9 @@ func NewRedis() *RedisClient {
 // SetItemCash 缓存商品信息.
 func (rs *RedisClient) SetItemCash(itemID int64, i model.ActivityItems) error {
 	Iteminfo := structs.Map(&i)
-	err := rs.client.HMSet(ctx, strconv.FormatInt(itemID, 10), Iteminfo).Err()
-	err2 := rs.client.HMSet(ctx, strconv.FormatInt(itemID, 10), "Valid", "1").Err()
-	err3 := rs.client.Expire(ctx, strconv.FormatInt(itemID, 10), 300*1e9).Err() //5分钟过期
+	err := rs.client.HMSet(strconv.FormatInt(itemID, 10), Iteminfo).Err()
+	err2 := rs.client.HSet(strconv.FormatInt(itemID, 10), "Valid", "1").Err()
+	err3 := rs.client.Expire(strconv.FormatInt(itemID, 10), 300*1e9).Err() //5分钟过期
 	if err != nil || err2 != nil || err3 != nil {
 		return err
 	}
@@ -49,7 +49,7 @@ func (rs *RedisClient) SetItemCash(itemID int64, i model.ActivityItems) error {
 
 // GetItemCash 获取Item信息.
 func (rs *RedisClient) GetItemCash(ItemID int64) (i *model.ActivityItems, hasData bool, err error) {
-	result, err := rs.client.HGetAll(ctx, strconv.FormatInt(ItemID, 10)).Result()
+	result, err := rs.client.HGetAll(strconv.FormatInt(ItemID, 10)).Result()
 
 	if err != nil {
 		return i, false, err
@@ -67,7 +67,7 @@ func (rs *RedisClient) GetItemCash(ItemID int64) (i *model.ActivityItems, hasDat
 
 // InvalidItemCash 手动失效商品信息
 func (rs *RedisClient) InvalidItemCash(ItemID int64) error {
-	err := rs.client.HSet(ctx, strconv.FormatInt(ItemID, 10), "Valid", "").Err()
+	err := rs.client.HSet(strconv.FormatInt(ItemID, 10), "Valid", "").Err()
 	if err != nil {
 		return err
 	}

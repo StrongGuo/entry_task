@@ -13,7 +13,6 @@ type ItemRepository interface {
 	RemoveItem(ctx context.Context, i model.Items) (int64, error)
 	GetItem(ctx context.Context, a model.ActivityItems) (ra model.ActivityItems, err error)
 	GetPromotions(ctx context.Context, i model.Items) (p []*proto.Promotion, err error)
-	SearchItem(ctx context.Context, i model.Items) (int64, error)
 	CreatePromotion(ctx context.Context, p model.Promotions) (int64, error)
 	RemovePromotion(ctx context.Context, p model.Promotions) (int64, error)
 }
