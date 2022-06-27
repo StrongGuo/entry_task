@@ -1,0 +1,475 @@
+{\rtf1\ansi\ansicpg936\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Bold;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset134 PingFangSC-Regular;
+\f3\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue128;\red0\green0\blue255;
+\red0\green128\blue0;\red255\green0\blue0;\red38\green38\blue38;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgenericrgb\c50196\c0\c0;\csgenericrgb\c0\c0\c50196;\csgenericrgb\c0\c0\c100000;
+\csgenericrgb\c0\c50196\c0;\csgenericrgb\c100000\c0\c0;\cssrgb\c20000\c20000\c20000;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww16020\viewh13040\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf2 CREATE
+\f1\b0 \cf0  
+\f0\b \cf2 TABLE
+\f1\b0 \cf0  
+\f0\b \cf2 IF
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 EXISTS
+\f1\b0 \cf0  items (\
+	id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 PRIMARY
+\f1\b0 \cf0  
+\f0\b \cf2 KEY
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 AUTO_INCREMENT
+\f1\b0 \cf0  COMMENT \cf5 'id
+\f2 \'d7\'d4\'d4\'f6
+\f1 '\cf0 ,\
+	item_id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 UNIQUE NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'c9\'cc\'c6\'b7
+\f1 id'\cf0 ,\
+	item_name 
+\f0\b \cf3 VARCHAR
+\f1\b0 \cf0 (\cf4 25\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'c9\'cc\'c6\'b7\'c3\'fb
+\f1 '\cf0 ,\
+	item_desc 
+\f0\b \cf3 VARCHAR
+\f1\b0 \cf0 (\cf4 50\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'c9\'cc\'c6\'b7\'c3\'e8\'ca\'f6
+\f1 '\cf0 ,\
+	item_price 
+\f0\b \cf3 DECIMAL
+\f1\b0 \cf0 (\cf4 10\cf0 ,\cf4 2\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'c9\'cc\'c6\'b7\'bc\'db\'b8\'f1
+\f1 '\cf0 ,\
+	item_stock 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'c9\'cc\'c6\'b7\'bf\'e2\'b4\'e6
+\f1 '\cf0 ,\
+	status 
+\f0\b \cf3 TINYINT
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'c9\'cc\'c6\'b7\'d7\'b4\'cc\'ac
+\f1  1
+\f2 \'d4\'da\'ca\'db
+\f1  2
+\f2 \'cf\'c2\'bc\'dc
+\f1 '\cf0 ,\
+	creator_id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'b4\'b4\'bd\'a8\'d5\'df
+\f1 ID'\cf0 ,\
+	last_modifier_id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d7\'ee\'ba\'f3\'d2\'bb\'b4\'ce\'d0\'de\'b8\'c4\'d5\'df
+\f1 '\cf0 ,\
+	ctime 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 DEFAULT
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'b4\'b4\'bd\'a8\'ca\'b1\'bc\'e4
+\f1 '\cf0 ,\
+	mtime 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 DEFAULT
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 ON
+\f1\b0 \cf0  
+\f0\b \cf2 UPDATE
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d0\'de\'b8\'c4\'ca\'b1\'bc\'e4
+\f1 '\cf0 \
+) 
+\f0\b \cf2 CHARACTER
+\f1\b0 \cf0  
+\f0\b \cf3 SET
+\f1\b0 \cf0  utf8 
+\f0\b \cf2 COLLATE
+\f1\b0 \cf0  utf8_bin COMMENT = \cf5 'item
+\f2 \'c9\'cc\'c6\'b7\'b1\'ed
+\f1 '\cf6 ;
+\f3\fs28 \cf7 \cb8 \expnd0\expndtw0\kerning0
+\
+\'a0\
+\'a0\
+
+\f0\b\fs24 \cf2 \cb1 \kerning1\expnd0\expndtw0 CREATE
+\f1\b0 \cf0  
+\f0\b \cf2 TABLE
+\f1\b0 \cf0  
+\f0\b \cf2 IF
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 EXISTS
+\f1\b0 \cf0  promotions (\
+	id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 )
+\f0\b \cf2  PRIMARY
+\f1\b0 \cf0  
+\f0\b \cf2 KEY
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 AUTO_INCREMENT
+\f1\b0 \cf0  COMMENT \cf5 'id
+\f2 \'d7\'d4\'d4\'f6
+\f1 '\cf0 ,\
+	promotion_id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL UNIQUE
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'bb\'ee\'b6\'af
+\f1 id'\cf0 ,\
+	promotion_desc 
+\f0\b \cf3 VARCHAR
+\f1\b0 \cf0 (\cf4 50\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'bb\'ee\'b6\'af\'c3\'e8\'ca\'f6
+\f1 '\cf0 ,\
+	start_time 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'bf\'aa\'ca\'bc\'ca\'b1\'bc\'e4
+\f1 '\cf0 ,\
+	end_time 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'bd\'e1\'ca\'f8\'ca\'b1\'bc\'e4
+\f1 '\cf0 ,\
+	ctime 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 DEFAULT
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP 
+\f1\b0 \cf0 COMMENT \cf5 '
+\f2 \'b4\'b4\'bd\'a8\'ca\'b1\'bc\'e4
+\f1 '\cf0 ,\
+	mtime 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 DEFAULT
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 ON
+\f1\b0 \cf0  
+\f0\b \cf2 UPDATE
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d0\'de\'b8\'c4\'ca\'b1\'bc\'e4
+\f1 '\cf0 ,\
+	creator_id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'b4\'b4\'bd\'a8\'d5\'df
+\f1 ID'\cf0 ,\
+	last_modifier_id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d7\'ee\'ba\'f3\'d2\'bb\'b4\'ce\'d0\'de\'b8\'c4\'d5\'df
+\f1 '\cf0 \
+) 
+\f0\b \cf2 CHARACTER
+\f1\b0 \cf0  
+\f0\b \cf3 SET
+\f1\b0 \cf0  utf8 
+\f0\b \cf2 COLLATE
+\f1\b0 \cf0  utf8_bin COMMENT = \cf5 'promotion
+\f2 \'bb\'ee\'b6\'af\'d0\'c5\'cf\'a2\'b1\'ed
+\f1 '\cf6 ;\
+
+\f3\fs28 \cf7 \cb8 \expnd0\expndtw0\kerning0
+\'a0\
+\'a0\
+
+\f0\b\fs24 \cf2 \cb1 \kerning1\expnd0\expndtw0 CREATE
+\f1\b0 \cf0  
+\f0\b \cf2 TABLE
+\f1\b0 \cf0  
+\f0\b \cf2 IF
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 EXISTS
+\f1\b0 \cf0  users (\
+	id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 PRIMARY
+\f1\b0 \cf0  
+\f0\b \cf2 KEY NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 AUTO_INCREMENT
+\f1\b0 \cf0  COMMENT \cf5 'id
+\f2 \'d7\'d4\'d4\'f6
+\f1 '\cf0 ,\
+	user_id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 UNIQUE
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d3\'c3\'bb\'a7
+\f1 id'\cf0 ,\
+	user_name 
+\f0\b \cf3 VARCHAR
+\f1\b0 \cf0 (\cf4 25\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d3\'c3\'bb\'a7\'c3\'fb\'b3\'c6
+\f1 '\cf0 ,\
+	user_type 
+\f0\b \cf3 VARCHAR
+\f1\b0 \cf0 (\cf4 25\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d3\'c3\'bb\'a7\'bd\'c7\'c9\'ab
+\f1  admin/guest'\cf0 ,\
+	ctime 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 DEFAULT
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'b4\'b4\'bd\'a8\'ca\'b1\'bc\'e4
+\f1 '\cf0 ,\
+	mtime 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 DEFAULT
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 ON
+\f1\b0 \cf0  
+\f0\b \cf2 UPDATE
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d0\'de\'b8\'c4\'ca\'b1\'bc\'e4
+\f1 '\cf0 \
+) 
+\f0\b \cf2 CHARACTER
+\f1\b0 \cf0  
+\f0\b \cf3 SET
+\f1\b0 \cf0  utf8 
+\f0\b \cf2 COLLATE
+\f1\b0 \cf0  utf8_bin COMMENT = \cf5 'user
+\f2 \'d3\'c3\'bb\'a7\'b1\'ed
+\f1 '\cf6 ;
+\f3\fs28 \cf7 \cb8 \expnd0\expndtw0\kerning0
+\
+\'a0\
+\'a0\
+
+\f0\b\fs24 \cf2 \cb1 \kerning1\expnd0\expndtw0 CREATE
+\f1\b0 \cf0  
+\f0\b \cf2 TABLE
+\f1\b0 \cf0  
+\f0\b \cf2 IF
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 EXISTS
+\f1\b0 \cf0  item_promotion_rel (\
+	id 
+\f0\b \cf3 INT
+\f1\b0 \cf0  
+\f0\b \cf2 PRIMARY
+\f1\b0 \cf0  
+\f0\b \cf2 KEY
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 AUTO_INCREMENT
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d7\'d4\'d4\'f6
+\f1 ID'\cf0 ,\
+	item_id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'c9\'cc\'c6\'b7
+\f1 id'\cf0 ,\
+	promotion_id 
+\f0\b \cf3 INT
+\f1\b0 \cf0 (\cf4 11\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'bb\'ee\'b6\'af
+\f1 id'\cf0 ,\
+	item_special_price 
+\f0\b \cf3 DECIMAL
+\f1\b0 \cf0 (\cf4 10\cf0 ,\cf4 2\cf0 ) 
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'c9\'cc\'c6\'b7\'bb\'ee\'b6\'af\'bc\'db\'b8\'f1
+\f1 '\cf0 ,\
+	ctime 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 DEFAULT
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'b4\'b4\'bd\'a8\'ca\'b1\'bc\'e4
+\f1 '\cf0 ,\
+	mtime 
+\f0\b \cf3 TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 NOT
+\f1\b0 \cf0  
+\f0\b \cf2 NULL
+\f1\b0 \cf0  
+\f0\b \cf2 DEFAULT
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  
+\f0\b \cf2 ON
+\f1\b0 \cf0  
+\f0\b \cf2 UPDATE
+\f1\b0 \cf0  
+\f0\b \cf3 CURRENT_TIMESTAMP
+\f1\b0 \cf0  COMMENT \cf5 '
+\f2 \'d0\'de\'b8\'c4\'ca\'b1\'bc\'e4
+\f1 '\cf0 \
+) 
+\f0\b \cf2 CHARACTER
+\f1\b0 \cf0  
+\f0\b \cf3 SET
+\f1\b0 \cf0  utf8 
+\f0\b \cf2 COLLATE
+\f1\b0 \cf0  utf8_bin COMMENT = \cf5 '
+\f2 \'c9\'cc\'c6\'b7\'bb\'ee\'b6\'af\'d0\'c5\'cf\'a2\'b1\'ed
+\f1 '\cf6 ;\cf0 \
+}
