@@ -217,6 +217,9 @@ func (s *Server) CreatePromotion(ctx context.Context, req *proto.CreatePromotion
 		return nil, status.Errorf(codes.Internal, fmt.Sprintf("internal error : %v", err))
 	}
 
+	//删除缓存
+	reds.InvalidItemCash(promotion.GetItemID())
+
 	return &proto.CreatePromotionResponse{
 		Msg: "success",
 	}, nil
@@ -227,6 +230,7 @@ func (s *Server) RemovePromotion(ctx context.Context, req *proto.RemovePromotion
 
 	RemovePromotionInfo := model.Promotions{
 		PromotionID: r.GetPromotionID(),
+		ItemID:      r.GetItemID(),
 	}
 
 	res, err := repo.RemovePromotion(ctx, RemovePromotionInfo)
@@ -236,6 +240,9 @@ func (s *Server) RemovePromotion(ctx context.Context, req *proto.RemovePromotion
 		return nil, status.Errorf(codes.Internal, fmt.Sprintf("internal error : %v", err))
 
 	}
+	//删除缓存
+	fmt.Println(r.GetItemID())
+	reds.InvalidItemCash(r.GetItemID())
 
 	return &proto.RemovePromotionResponse{}, nil
 }
