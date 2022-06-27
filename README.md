@@ -1,10 +1,14 @@
 # item-admin
-to init environment:
+### init environment:
 $go mod init
+
 $go mod tidy
 
-to run grpc server:
+### run grpc server:
 $go run server/grpc-server.go
 
-to run http client:
+### run http client:
 $go run client/http-client.go
+
+
+
