@@ -241,7 +241,6 @@ func (s *Server) RemovePromotion(ctx context.Context, req *proto.RemovePromotion
 
 	}
 	//删除缓存
-	fmt.Println(r.GetItemID())
 	reds.InvalidItemCash(r.GetItemID())
 
 	return &proto.RemovePromotionResponse{}, nil
